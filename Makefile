@@ -35,6 +35,7 @@ SRC += string_insert.c
 SRC += string_to_int.c
 SRC += string_split.c
 SRC += string_print.c
+SRC += string_join.c
 
 # ↓ Objects
 BUILD_DIR := .build

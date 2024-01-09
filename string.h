@@ -34,6 +34,8 @@ struct string_s {
     char **(*split_c)(const string_t *this, char separator);
     string_t **(*split_s)(const string_t *this, char separator);
     void (*print)(const string_t *this);
+    void (*join_c)(string_t *this, char delim, const char *const *array);
+    void (*join_s)(string_t *this, char delim, const string_t *const *array);
 };
 
 void string_init(string_t *this, const char *s);
@@ -72,5 +74,8 @@ char **split_c(const string_t *this, char separator);
 string_t **split_s(const string_t *this, char separator);
 
 void print(const string_t *this);
+
+void join_c(string_t *this, char delim, const char *const *array);
+void join_s(string_t *this, char delim, const string_t *const *array);
 
 #endif /* PPOOL5_STRING_H */

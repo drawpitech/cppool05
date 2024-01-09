@@ -45,6 +45,7 @@ string_t **split_s(const string_t *this, char separator)
         array = reallocarray(array, size + 2, sizeof(char *));
         ptr = malloc(sizeof(string_t));
         string_init(ptr, array[size]);
+        free(array[size]);
         result[size] = ptr;
         size += 1;
     }
