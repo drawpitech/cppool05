@@ -9,5 +9,7 @@
 
 void clear(string_t *this)
 {
-    string_destroy(this);
+    if (this == NULL)
+        return;
+    this->assign_c(this, "");
 }
