@@ -39,7 +39,8 @@ SRC += string_print.c
 SRC += string_join.c
 
 VPATH += tests
-TEST_SRC := test_assign.c
+TEST_SRC := $(SRC)
+TEST_SRC += test_assign.c
 TEST_SRC += test_append.c
 TEST_SRC += test_at.c
 TEST_SRC += test_clear.c
@@ -81,7 +82,7 @@ $(BUILD_DIR)/source/%.o: %.c
 
 $(NAME): $(OBJ)
 	@ $(ECHO) "[${C_BOLD}${C_YELLOW}AR${C_RESET}] ${C_RED}$@${C_RESET}"
-	@ $(AR) rc $@ $(OBJ) || $(DIE)
+	@ $(AR) rc $@ $^ || $(DIE)
 
 .PHONY: $(NAME)
 
@@ -94,10 +95,10 @@ $(BUILD_DIR)/tests/%.o: %.c
 ifneq ($(NO_COV), 1)
 $(TEST_NAME): CFLAGS += -g3 --coverage
 endif
-$(TEST_NAME): LDFLAGS += -lcriterion -L . -lstring
-$(TEST_NAME): $(TEST_OBJ) $(NAME)
+$(TEST_NAME): LDFLAGS += -lcriterion
+$(TEST_NAME): $(TEST_OBJ)
 	@ $(ECHO) "[${C_BOLD}${C_YELLOW}CC${C_RESET}] ${C_GREEN}$@${C_RESET}"
-	@ $(CC) -o $@ $(TEST_OBJ) $(LDFLAGS) $(CFLAGS) || $(DIE)
+	@ $(CC) -o $@ $^ $(LDFLAGS) $(CFLAGS) || $(DIE)
 
 tests_run: fclean
 	@ $(MAKE) -s -C . $(TEST_NAME)
