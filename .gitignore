@@ -1,0 +1,19 @@
+# Binaries
+*.out
+
+# Compilation
+.build/
+*.a
+*.o
+
+# Editors junk
+*~
+\#*#
+*.swp
+*.swo
+
+# Reports
+core.*
+*.log
+*.gcda
+*.gcno
