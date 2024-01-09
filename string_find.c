@@ -23,7 +23,7 @@ int find_c(const string_t *this, const char *str, size_t pos)
 
 int find_s(const string_t *this, const string_t *str, size_t pos)
 {
-    return (this == NULL || str == NULL || this->find_c == NULL)
+    return (this == NULL || str == NULL)
         ? -1
         : this->find_c(this, str->str, pos);
 }

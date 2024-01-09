@@ -9,8 +9,7 @@
 
 void insert_c(string_t *this, size_t pos, const char *str)
 {
-    if (this == NULL || str == NULL || this->str == NULL
-        || this->length == NULL || this->append_c == NULL)
+    if (this == NULL || str == NULL || this->str == NULL)
         return;
     if (pos <= (size_t)this->length(this))
         this->str[pos] = '\0';
@@ -19,8 +18,7 @@ void insert_c(string_t *this, size_t pos, const char *str)
 
 void insert_s(string_t *this, size_t pos, const string_t *str)
 {
-    if (this == NULL || str == NULL || this->insert_c == NULL
-        || str->str == NULL)
+    if (this == NULL || str == NULL || str->str == NULL)
         return;
     this->insert_c(this, pos, str->str);
 }
