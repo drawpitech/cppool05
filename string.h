@@ -19,6 +19,7 @@ struct string_s {
     void (*append_c)(string_t *this, const char *ap);
     void (*append_s)(string_t *this, const string_t *ap);
     char (*at)(const string_t *this, size_t pos);
+    void (*clear)(string_t *this);
 };
 
 void string_init(string_t *this, const char *s);
@@ -31,5 +32,7 @@ void append_c(string_t *this, const char *ap);
 void append_s(string_t *this, const string_t *ap);
 
 char at(const string_t *this, size_t pos);
+
+void clear(string_t *this);
 
 #endif /* PPOOL5_STRING_H */

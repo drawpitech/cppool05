@@ -14,7 +14,7 @@ void append_c(string_t *this, const char *ap)
 {
     char *ptr = NULL;
 
-    if (this == NULL || ap == NULL)
+    if (this == NULL || ap == NULL || this->assign_c)
         return;
     ptr = reallocarray(
         this->str,
@@ -27,7 +27,7 @@ void append_c(string_t *this, const char *ap)
 
 void append_s(string_t *this, const string_t *ap)
 {
-    if (this == NULL || ap == NULL)
+    if (this == NULL || ap == NULL || this->append_c)
         return;
     this->append_c(this, ap->str);
 }

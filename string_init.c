@@ -21,6 +21,7 @@ void string_init(string_t *this, const char *s)
     this->append_c = &append_c;
     this->append_s = &append_s;
     this->at = &at;
+    this->clear = &clear;
 }
 
 void string_destroy(string_t *this)

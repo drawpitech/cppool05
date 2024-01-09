@@ -19,7 +19,7 @@ void assign_c(string_t *this, const char *s)
 
 void assign_s(string_t *this, const string_t *str)
 {
-    if (this == NULL || str == NULL)
+    if (this == NULL || str == NULL || this->assign_c)
         return;
     this->assign_c(this, str->str);
 }
