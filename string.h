@@ -30,6 +30,7 @@ struct string_s {
     int (*find_s)(const string_t *this, const string_t *str, size_t pos);
     void (*insert_c)(string_t *this, size_t pos, const char *str);
     void (*insert_s)(string_t *this, size_t pos, const string_t *str);
+    int (*to_int)(const string_t *this);
 };
 
 void string_init(string_t *this, const char *s);
@@ -61,5 +62,7 @@ int find_s(const string_t *this, const string_t *str, size_t pos);
 
 void insert_c(string_t *this, size_t pos, const char *str);
 void insert_s(string_t *this, size_t pos, const string_t *str);
+
+int to_int(const string_t *this);
 
 #endif /* PPOOL5_STRING_H */

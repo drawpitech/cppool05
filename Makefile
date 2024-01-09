@@ -32,6 +32,7 @@ SRC += string_c_str.c
 SRC += string_empty.c
 SRC += string_find.c
 SRC += string_insert.c
+SRC += string_to_int.c
 
 # ↓ Objects
 BUILD_DIR := .build
