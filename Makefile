@@ -24,6 +24,8 @@ SRC := string_init.c
 SRC += string_assign.c
 SRC += string_append.c
 SRC += string_at.c
+SRC += string_clear.c
+SRC += string_length.c
 
 # ↓ Objects
 BUILD_DIR := .build
