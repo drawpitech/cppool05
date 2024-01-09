@@ -22,6 +22,7 @@ NAME := libstring.a
 VPATH := .
 SRC := string_init.c
 SRC += string_assign.c
+SRC += string_append.c
 
 # ↓ Objects
 BUILD_DIR := .build
