@@ -33,6 +33,7 @@ struct string_s {
     int (*to_int)(const string_t *this);
     char **(*split_c)(const string_t *this, char separator);
     string_t **(*split_s)(const string_t *this, char separator);
+    void (*print)(const string_t *this);
 };
 
 void string_init(string_t *this, const char *s);
@@ -69,5 +70,7 @@ int to_int(const string_t *this);
 
 char **split_c(const string_t *this, char separator);
 string_t **split_s(const string_t *this, char separator);
+
+void print(const string_t *this);
 
 #endif /* PPOOL5_STRING_H */

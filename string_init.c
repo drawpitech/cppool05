@@ -30,6 +30,7 @@ void string_init(string_t *this, const char *s)
         .insert_c = &insert_c, .insert_s = &insert_s,
         .to_int = &to_int,
         .split_c = &split_c, .split_s = &split_s,
+        .print = &print
     };
 }
 
