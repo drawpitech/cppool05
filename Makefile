@@ -17,6 +17,7 @@ CFLAGS += -iquote .
 
 # ↓ Binaries
 NAME := libstring.a
+TEST_NAME := unit_tests
 
 # Source files
 VPATH := .
@@ -37,13 +38,18 @@ SRC += string_split.c
 SRC += string_print.c
 SRC += string_join.c
 
+VPATH += tests
+TEST_SRC := test_assign.c
+
 # ↓ Objects
 BUILD_DIR := .build
-OBJ := $(SRC:%.c=$(BUILD_DIR)/%.o)
+OBJ := $(SRC:%.c=$(BUILD_DIR)/source/%.o)
+TEST_OBJ := $(TEST_SRC:%.c=$(BUILD_DIR)/tests/%.o)
 
 # ↓ Dependencies for headers
 DEPS_FLAGS := -MMD -MP
 DEPS := $(OBJ:.o=.d)
+TEST_DEPS := $(OBJ_TESTS:.o=.d)
 
 DIE := exit 1
 # ↓ Colors
@@ -62,26 +68,48 @@ all: $(NAME)
 .PHONY: all
 
 # ↓ Compiling
-$(BUILD_DIR)/%.o: %.c
+$(BUILD_DIR)/source/%.o: %.c
 	@ mkdir -p $(dir $@)
 	@ $(ECHO) "[${C_BOLD}${C_RED}CC${C_RESET}] $^"
-	@ $(CC) -o $@ -c $< $(CFLAGS) $(DEPS_FLAGS) || $(DIE)
+	@ $(CC) -o $@ -c $< $(CFLAGS) || $(DIE)
 
-$(NAME): $(HEADER) $(OBJ)
+$(NAME): $(OBJ)
 	@ $(ECHO) "[${C_BOLD}${C_YELLOW}AR${C_RESET}] ${C_RED}$@${C_RESET}"
 	@ $(AR) rc $@ $(OBJ) || $(DIE)
+
+.PHONY: $(NAME)
+
+# ↓ Tests
+$(BUILD_DIR)/tests/%.o: %.c
+	@ mkdir -p $(dir $@)
+	@ $(ECHO) "[${C_BOLD}${C_RED}CC${C_RESET}] $^"
+	@ $(CC) -o $@ -c $< $(CFLAGS) || $(DIE)
+
+ifneq ($(NO_COV), 1)
+$(TEST_NAME): CFLAGS += -g3 --coverage
+endif
+$(TEST_NAME): LDFLAGS += -lcriterion -L . -lstring
+$(TEST_NAME): $(TEST_OBJ) $(NAME)
+	@ $(ECHO) "[${C_BOLD}${C_YELLOW}CC${C_RESET}] ${C_GREEN}$@${C_RESET}"
+	@ $(CC) -o $@ $(TEST_OBJ) $(LDFLAGS) $(CFLAGS) || $(DIE)
+
+tests_run: fclean
+	@ $(MAKE) -s -C . $(TEST_NAME)
+	@-./$(TEST_NAME)
+
+.PHONY: $(TEST_NAME) tests_run
 
 # ↓ Cleaning
 clean:
 	@ $(RM) -r $(BUILD_DIR)
 
 fclean: clean
-	@ $(RM) $(NAME) ../$(NAME)
+	@ $(RM) $(NAME) $(TEST_NAME)
 
 .PHONY: clean fclean
 
 re: fclean
-	$(MAKE) -C .
+	@ $(MAKE) -s -C .
 
 .PHONY: re
 

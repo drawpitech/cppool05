@@ -1,11 +1,11 @@
 # Binaries
 *.out
+unit_tests
 
 # Compilation
 .build/
 *.a
 *.o
-main.c
 
 # Editors junk
 *~
