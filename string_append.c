@@ -22,6 +22,7 @@ void append_c(string_t *this, const char *ap)
     strcpy(ptr, this->str);
     strcat(ptr, ap);
     this->assign_c(this, ptr);
+    free(ptr);
 }
 
 void append_s(string_t *this, const string_t *ap)

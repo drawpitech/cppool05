@@ -19,6 +19,7 @@ Test(copy, full_string)
     res = s.copy(&s, buf, 12, 0);
     cr_assert_str_eq(buf, "Hello World");
     cr_assert_eq(res, 12);
+    string_destroy(&s);
 }
 
 Test(copy, empty_string)
@@ -31,6 +32,7 @@ Test(copy, empty_string)
     res = s.copy(&s, buf, 12, 0);
     cr_assert_str_empty(buf);
     cr_assert_eq(res, 1);
+    string_destroy(&s);
 }
 
 Test(copy, empty_string_v2)
@@ -43,6 +45,7 @@ Test(copy, empty_string_v2)
     res = s.copy(&s, buf, 0, 0);
     cr_assert_str_empty(buf);
     cr_assert_eq(res, 0);
+    string_destroy(&s);
 }
 
 Test(copy, partial_string)
@@ -55,6 +58,7 @@ Test(copy, partial_string)
     res = s.copy(&s, buf, 5, 0);
     cr_assert_str_eq(buf, "Hello");
     cr_assert_eq(res, 5);
+    string_destroy(&s);
 }
 
 Test(copy, partial_string_with_offset)
@@ -67,4 +71,5 @@ Test(copy, partial_string_with_offset)
     res = s.copy(&s, buf, 5, 6);
     cr_assert_str_eq(buf, "World");
     cr_assert_eq(res, 5);
+    string_destroy(&s);
 }
