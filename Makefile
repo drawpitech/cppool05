@@ -43,6 +43,9 @@ TEST_SRC := test_assign.c
 TEST_SRC += test_append.c
 TEST_SRC += test_at.c
 TEST_SRC += test_clear.c
+TEST_SRC += test_length.c
+TEST_SRC += test_compare.c
+TEST_SRC += test_print.c
 
 # ↓ Objects
 BUILD_DIR := .build
@@ -101,6 +104,15 @@ tests_run: fclean
 	@-./$(TEST_NAME)
 
 .PHONY: $(TEST_NAME) tests_run
+
+# ↓ Coverage
+cov: GCOVR_FLAGS := --exclude bonus/
+cov: GCOVR_FLAGS += --exclude tests/
+cov:
+	@ gcovr $(GCOVR_FLAGS)
+	@ gcovr $(GCOVR_FLAGS) --branches
+
+.PHONE: cov
 
 # ↓ Cleaning
 clean:
