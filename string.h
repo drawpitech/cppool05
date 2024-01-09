@@ -26,6 +26,8 @@ struct string_s {
     size_t (*copy)(const string_t *this, char *s, size_t n, size_t pos);
     const char *(*c_str)(const string_t *this);
     int (*empty)(const string_t *this);
+    int (*find_c)(const string_t *this, const char *str, size_t pos);
+    int (*find_s)(const string_t *this, const string_t *str, size_t pos);
 };
 
 void string_init(string_t *this, const char *s);
@@ -51,5 +53,8 @@ size_t copy(const string_t *this, char *s, size_t n, size_t pos);
 const char *c_str(const string_t *this);
 
 int empty(const string_t *this);
+
+int find_c(const string_t *this, const char *str, size_t pos);
+int find_s(const string_t *this, const string_t *str, size_t pos);
 
 #endif /* PPOOL5_STRING_H */

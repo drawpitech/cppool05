@@ -31,4 +31,3 @@ void append_s(string_t *this, const string_t *ap)
         return;
     this->append_c(this, ap->str);
 }
-
