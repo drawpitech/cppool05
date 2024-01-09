@@ -21,6 +21,7 @@ NAME := libstring.a
 # Source files
 VPATH := .
 SRC := string_init.c
+SRC += string_assign.c
 
 # ↓ Objects
 BUILD_DIR := .build

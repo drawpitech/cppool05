@@ -16,6 +16,8 @@ void string_init(string_t *this, const char *s)
         return;
     *this = (string_t){ 0 };
     this->str = strdup(s);
+    this->assign_c = &assign_c;
+    this->assign_s = &assign_s;
 }
 
 void string_destroy(string_t *this)
@@ -23,4 +25,5 @@ void string_destroy(string_t *this)
     if (this == NULL || this->str == NULL)
         return;
     free(this->str);
+    *this = (string_t){ 0 };
 }
