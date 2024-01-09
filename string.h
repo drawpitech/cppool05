@@ -31,6 +31,8 @@ struct string_s {
     void (*insert_c)(string_t *this, size_t pos, const char *str);
     void (*insert_s)(string_t *this, size_t pos, const string_t *str);
     int (*to_int)(const string_t *this);
+    char **(*split_c)(const string_t *this, char separator);
+    string_t **(*split_s)(const string_t *this, char separator);
 };
 
 void string_init(string_t *this, const char *s);
@@ -64,5 +66,8 @@ void insert_c(string_t *this, size_t pos, const char *str);
 void insert_s(string_t *this, size_t pos, const string_t *str);
 
 int to_int(const string_t *this);
+
+char **split_c(const string_t *this, char separator);
+string_t **split_s(const string_t *this, char separator);
 
 #endif /* PPOOL5_STRING_H */

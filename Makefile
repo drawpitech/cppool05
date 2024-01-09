@@ -33,6 +33,7 @@ SRC += string_empty.c
 SRC += string_find.c
 SRC += string_insert.c
 SRC += string_to_int.c
+SRC += string_split.c
 
 # ↓ Objects
 BUILD_DIR := .build
@@ -77,7 +78,8 @@ fclean: clean
 
 .PHONY: clean fclean
 
-re: fclean all
+re: fclean
+	$(MAKE) -C .
 
 .PHONY: re
 
