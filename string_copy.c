@@ -16,7 +16,7 @@ size_t copy(const string_t *this, char *s, size_t n, size_t pos)
 
     if (this == NULL || this->str == NULL || s == NULL)
         return 0;
-    len = strlen(this->str);
+    len = strlen(this->str) + 1;
     if (pos > len)
         return 0;
     n = MIN(len - pos, n);
