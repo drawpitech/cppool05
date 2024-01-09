@@ -25,6 +25,7 @@ void string_init(string_t *this, const char *s)
     this->length = &length;
     this->compare_c = &compare_c;
     this->compare_s = &compare_s;
+    this->copy = &copy;
 }
 
 void string_destroy(string_t *this)
