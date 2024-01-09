@@ -21,6 +21,8 @@ struct string_s {
     char (*at)(const string_t *this, size_t pos);
     void (*clear)(string_t *this);
     int (*length)(const string_t *this);
+    int (*compare_c)(const string_t *this, const char *str);
+    int (*compare_s)(const string_t *this, const string_t *str);
 };
 
 void string_init(string_t *this, const char *s);
@@ -37,5 +39,8 @@ char at(const string_t *this, size_t pos);
 void clear(string_t *this);
 
 int length(const string_t *this);
+
+int compare_c(const string_t *this, const char *str);
+int compare_s(const string_t *this, const string_t *str);
 
 #endif /* PPOOL5_STRING_H */

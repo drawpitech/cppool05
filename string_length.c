@@ -5,8 +5,9 @@
 ** string_length
 */
 
-#include "string.h"
 #include <string.h>
+
+#include "string.h"
 
 int length(const string_t *this)
 {

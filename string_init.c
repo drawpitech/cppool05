@@ -23,6 +23,8 @@ void string_init(string_t *this, const char *s)
     this->at = &at;
     this->clear = &clear;
     this->length = &length;
+    this->compare_c = &compare_c;
+    this->compare_s = &compare_s;
 }
 
 void string_destroy(string_t *this)
