@@ -47,6 +47,9 @@ TEST_SRC += test_clear.c
 TEST_SRC += test_length.c
 TEST_SRC += test_compare.c
 TEST_SRC += test_copy.c
+TEST_SRC += test_c_str.c
+TEST_SRC += test_empty.c
+TEST_SRC += test_find.c
 TEST_SRC += test_print.c
 
 # ↓ Objects
