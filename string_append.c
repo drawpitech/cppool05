@@ -16,13 +16,12 @@ void append_c(string_t *this, const char *ap)
 
     if (this == NULL || ap == NULL)
         return;
-    ptr = reallocarray(
-        this->str,
-        strlen(this->str) + strlen(ap) + 1,
-        sizeof(char));
+    ptr = malloc((strlen(this->str) + strlen(ap) + 1) * sizeof(char));
     if (ptr == NULL)
         return;
-    this->assign_c(this, strcat(ptr, ap));
+    strcpy(ptr, this->str);
+    strcat(ptr, ap);
+    this->assign_c(this, ptr);
 }
 
 void append_s(string_t *this, const string_t *ap)
