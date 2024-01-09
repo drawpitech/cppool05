@@ -28,6 +28,7 @@ SRC += string_clear.c
 SRC += string_length.c
 SRC += string_compare.c
 SRC += string_copy.c
+SRC += string_c_str.c
 
 # ↓ Objects
 BUILD_DIR := .build
