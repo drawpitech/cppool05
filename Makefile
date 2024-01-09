@@ -41,6 +41,7 @@ SRC += string_join.c
 VPATH += tests
 TEST_SRC := test_assign.c
 TEST_SRC += test_append.c
+TEST_SRC += test_at.c
 
 # ↓ Objects
 BUILD_DIR := .build
