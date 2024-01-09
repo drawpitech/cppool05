@@ -5,6 +5,7 @@
 .build/
 *.a
 *.o
+main.c
 
 # Editors junk
 *~
