@@ -14,11 +14,10 @@ void join_c(string_t *this, char delim, const char *const *array)
     if (this == NULL || array == NULL)
         return;
     this->assign_c(this, "");
-    while (array[0] != NULL) {
+    for (; array[0] != NULL; array++) {
         this->append_c(this, array[0]);
         if (array[1] != NULL)
             this->append_c(this, sep);
-        array++;
     }
 }
 
@@ -29,10 +28,9 @@ void join_s(string_t *this, char delim, const string_t *const *array)
     if (this == NULL || array == NULL)
         return;
     this->assign_c(this, "");
-    while (array[0] != NULL || array[0]->str == NULL) {
-        this->append_c(this, array[0]->str);
+    for (; array[0] != NULL && array[0]->str != NULL; array++) {
+        this->append_s(this, array[0]);
         if (array[1] != NULL)
             this->append_c(this, sep);
-        array++;
     }
 }
