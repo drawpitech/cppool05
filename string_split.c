@@ -5,51 +5,65 @@
 ** string_split
 */
 
+#include <stdbool.h>
 #include <string.h>
 
 #include "string.h"
 
+static
+size_t count_words(const char *str, char separator)
+{
+    size_t count = 0;
+
+    while (true) {
+        str = strchr(str, separator);
+        count += 1;
+        if (str == NULL || !*str)
+            break;
+        str += 1;
+    }
+    return count;
+}
+
 char **split_c(const string_t *this, char separator)
 {
-    size_t size = 0;
     char **array = NULL;
-    char *ptr;
-    char sep[] = {separator, '\0'};
+    char *ptr = NULL;
+    char *end = NULL;
 
     if (this == NULL || this->str == NULL)
         return NULL;
-    ptr = strdup(this->str);
-    array = malloc(sizeof(char *));
-    while (*ptr) {
-        array = reallocarray(array, size + 2, sizeof(char *));
-        array[size] = ptr;
-        strsep(&ptr, sep);
-        size += 1;
+    array = calloc((count_words(this->str, separator) + 1), sizeof(char *));
+    ptr = this->str;
+    for (size_t i = 0;; i++) {
+        end = strchr(ptr, separator);
+        if (end == NULL || !*end) {
+            array[i] = strdup(ptr);
+            break;
+        }
+        array[i] = strndup(ptr, end - ptr);
+        ptr = end + 1;
     }
-    array[size] = NULL;
     return array;
 }
 
 string_t **split_s(const string_t *this, char separator)
 {
-    char **array = NULL;
-    string_t **result = NULL;
-    size_t size = 0;
-    string_t *ptr;
+    char **sarray = NULL;
+    string_t **array = NULL;
 
     if (this == NULL || this->str == NULL)
         return NULL;
-    array = split_c(this, separator);
-    array = malloc(sizeof(char *));
-    while (*array) {
-        array = reallocarray(array, size + 2, sizeof(char *));
-        ptr = malloc(sizeof(string_t));
-        string_init(ptr, array[size]);
-        free(array[size]);
-        result[size] = ptr;
-        size += 1;
+    array = calloc(
+        (count_words(this->str, separator) + 1), sizeof(string_t *));
+    sarray = split_c(this, separator);
+    if (sarray == NULL)
+        return NULL;
+    for (size_t i = 0; sarray[i] != NULL; i++) {
+        array[i] = malloc(sizeof(string_t));
+        string_init(array[i], sarray[i]);
+        free(sarray[i]);
     }
-    array[size] = NULL;
-    free(array);
-    return result;
+    free(sarray);
+    return array;
 }

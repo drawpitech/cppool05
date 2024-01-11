@@ -51,6 +51,7 @@ TEST_SRC += test_c_str.c
 TEST_SRC += test_empty.c
 TEST_SRC += test_find.c
 TEST_SRC += test_print.c
+TEST_SRC += test_split.c
 
 # ↓ Objects
 BUILD_DIR := .build
