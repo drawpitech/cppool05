@@ -15,6 +15,8 @@ size_t count_words(const char *str, char separator)
 {
     size_t count = 0;
 
+    if (str == NULL || *str == '\0')
+        return 0;
     while (true) {
         str = strchr(str, separator);
         count += 1;
@@ -30,12 +32,14 @@ char **split_c(const string_t *this, char separator)
     char **array = NULL;
     char *ptr = NULL;
     char *end = NULL;
+    size_t count = 0;
 
     if (this == NULL || this->str == NULL)
         return NULL;
-    array = calloc((count_words(this->str, separator) + 1), sizeof(char *));
+    count = count_words(this->str, separator);
+    array = calloc(count + 1, sizeof(char *));
     ptr = this->str;
-    for (size_t i = 0;; i++) {
+    for (size_t i = 0; i < count; i++) {
         end = strchr(ptr, separator);
         if (end == NULL || !*end) {
             array[i] = strdup(ptr);

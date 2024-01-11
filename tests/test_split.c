@@ -54,8 +54,7 @@ Test(split_c, empty)
     string_init(&s, "") ;
     array = s.split_c(&s, ' ');
     cr_assert_not_null(array);
-    cr_assert_str_eq(array[0], "");
-    cr_assert_null(array[1]);
+    cr_assert_null(array[0]);
     free_char_array(array);
     string_destroy(&s);
 }
